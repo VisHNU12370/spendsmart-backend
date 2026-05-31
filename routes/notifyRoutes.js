@@ -1,11 +1,10 @@
 const express = require("express");
 const router  = express.Router();
-const User    = require("figlet/importable-fonts/smartspend/server/models/User");
-const { protect } = require("figlet/importable-fonts/smartspend/server/middleware/authMiddleware");
+const User    = require("../models/User");
+const { protect } = require("../middleware/authMiddleware");
 
 router.use(protect);
 
-// Save push subscription from browser
 router.post("/subscribe", async (req, res) => {
   try {
     await User.findByIdAndUpdate(req.user._id, { pushSubscription: req.body });
@@ -15,7 +14,6 @@ router.post("/subscribe", async (req, res) => {
   }
 });
 
-// Get VAPID public key (needed by frontend to subscribe)
 router.get("/vapid-public-key", (req, res) => {
   res.json({ publicKey: process.env.VAPID_PUBLIC_KEY });
 });
