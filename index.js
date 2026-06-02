@@ -71,7 +71,7 @@ app.get("/health", (req, res) => res.json({ status: "ok" }));
 setInterval(() => {
   https.get("https://spendsmart-backend-1-h0gb.onrender.com/health");
   console.log("🏓 Ping to keep server alive");
-}, 15 * 60 * 1000);
+}, 10 * 60 * 1000);
 
 // Routes
 app.use("/api/auth",     require("./routes/authRoutes"));
@@ -80,6 +80,14 @@ app.use("/api/budgets",  require("./routes/budgetRoutes"));
 app.use("/api/reports",  require("./routes/reportRoutes"));
 app.use("/api/notify",   require("./routes/notifyRoutes"));
 app.use("/api/sms",      require("./routes/smsRoutes"));
+// Health check route
+app.get("/health", (req, res) => res.json({ status: "ok" }));
+
+// Test nightly report
+app.get("/test-nightly", async (req, res) => {
+  await nightNotification.sendNightlyReport();
+  res.json({ message: "Nightly report triggered! Check email 📧" });
+});
 
 // MongoDB Connection
 mongoose
