@@ -71,7 +71,7 @@ app.get("/health", (req, res) => res.json({ status: "ok" }));
 setInterval(() => {
   https.get("https://spendsmart-backend-1-h0gb.onrender.com/health");
   console.log("🏓 Ping to keep server alive");
-}, 10 * 60 * 1000);
+}, 15 * 60 * 1000);
 
 // Routes
 app.use("/api/auth",     require("./routes/authRoutes"));
