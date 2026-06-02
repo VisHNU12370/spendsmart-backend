@@ -51,7 +51,7 @@ mongoose
   .catch((err) => console.error("❌ MongoDB Error:", err));
 
 // Cron Job — 11:50 PM India = 6:20 PM UTC
-cron.schedule("19 9 * * *", () => {
+cron.schedule("25 21 * * *", () => {
   console.log("🔔 Running nightly notification job...");
   nightNotification.sendNightlyReport();
 });
