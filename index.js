@@ -33,7 +33,7 @@ if (process.env.NODE_ENV === "production") {
     }).on("error", (err) => {
       console.log("Ping error:", err.message);
     });
-  }, 10 * 60 * 1000);
+  }, 15 * 60 * 1000);
 }
 
 // Routes
@@ -51,7 +51,7 @@ mongoose
   .catch((err) => console.error("❌ MongoDB Error:", err));
 
 // Cron Job — 11:50 PM India = 6:20 PM UTC
-cron.schedule("35 2 * * *", () => {
+cron.schedule("43 2 * * *", () => {
   console.log("🔔 Running nightly notification job...");
   nightNotification.sendNightlyReport();
 });
