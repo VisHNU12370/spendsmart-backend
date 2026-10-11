@@ -91,7 +91,7 @@ eas build --platform android
 
 ## Permissions
 
-The app requests SMS read permission on Android to detect transactions. Messages are used only to extract transaction details.
+The app requests SMS read permission on Android to detect transactions. Messages are used only to extract transaction details and allows for everyone.
 
 ## Roadmap
 
